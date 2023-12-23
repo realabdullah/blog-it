@@ -1,0 +1,36 @@
+:root {
+    --main-bg: #FFFFFF;
+    --main-text: #1A1A1A;
+    --sec-tex: #667085;
+}
+
+.dark {
+    --main-bg: #090D1F;
+    --main-text: #FFFFFF;
+    --sec-tex: #C0C5D0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Courier New', Courier, monospace;
+
+    body {
+        background-color: var(--main-bg);
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 30px 15px;
+
+        a {
+            text-decoration: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+    }
+}
