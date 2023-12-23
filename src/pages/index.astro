@@ -1,22 +1,244 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import RecentPosts from '../components/RecentPosts.astro';
+import Layout from "../layouts/Layout.astro";
+import RecentPosts from "../components/RecentPosts.astro";
+import Post from "../components/Post.astro";
+
+const posts = [
+  {
+    image: "https://source.unsplash.com/featured/?UX",
+    author: "Olivia Rhye",
+    date: "1 Jan 2023",
+    title: "UX review presentations",
+    description:
+      "How do you create compelling presentations that wow your colleagues and impress your managers?",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Linear",
+    author: "Phoenix Baker",
+    date: "1 Jan 2023",
+    title: "Migrating to Linear 101",
+    description:
+      "Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get...",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?API",
+    author: "Lana Steiner",
+    date: "1 Jan 2023",
+    title: "Building your API Stack",
+    description:
+      "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and manag...",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?React",
+    author: "Ethan Lawson",
+    date: "5 Feb 2023",
+    title: "Mastering React Hooks",
+    description:
+      "Learn the ins and outs of React Hooks for efficient state management and component logic.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Minimalism",
+    author: "Sophia Harper",
+    date: "12 Mar 2023",
+    title: "The Art of Minimalism",
+    description:
+      "Explore the beauty and simplicity of minimalist design in various creative fields.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Marketing",
+    author: "Liam Foster",
+    date: "18 Apr 2023",
+    title: "Digital Marketing Strategies",
+    description:
+      "Stay ahead in the competitive digital landscape with effective marketing strategies and insights.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Fusion",
+    author: "Ava Simmons",
+    date: "25 May 2023",
+    title: "Cooking with Fusion Flavors",
+    description:
+      "Explore the world of fusion cuisine and create delicious dishes with unique flavor combinations.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?photography",
+    author: "Ethan Anderson",
+    date: "5 Mar 2023",
+    title: "The Art of Photography",
+    description:
+      "Explore the beauty of photography and learn tips from professionals in the field.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?living",
+    author: "Sophia Miller",
+    date: "12 Apr 2023",
+    title: "Healthy Living Habits",
+    description:
+      "Discover the secrets to maintaining a healthy lifestyle and staying fit.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?virtual,reality",
+    author: "Ava Harris",
+    date: "20 Jun 2023",
+    title: "The World of Virtual Reality",
+    description:
+      "Dive into the immersive world of virtual reality and its applications in various industries.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?culinary adventures",
+    author: "Noah Taylor",
+    date: "3 Jul 2023",
+    title: "Culinary Adventures",
+    description:
+      "Embark on a culinary journey with unique recipes and cooking tips from around the world.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?meditation",
+    author: "Mia Clark",
+    date: "15 Aug 2023",
+    title: "Mindfulness Meditation",
+    description:
+      "Explore the benefits of mindfulness meditation and how it can improve your mental well-being.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?AI healthcare",
+    author: "Liam Baker",
+    date: "2 Sep 2023",
+    title: "Artificial Intelligence in Healthcare",
+    description:
+      "Explore the impact of AI in healthcare and its role in revolutionizing patient care.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?tech bootcamp",
+    author: "Ella White",
+    date: "18 Oct 2023",
+    title: "Coding Bootcamps: A Path to Tech Careers",
+    description:
+      "Discover the benefits of coding bootcamps and how they can fast-track your entry into the tech industry.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Astrophotography",
+    author: "Henry Martinez",
+    date: "7 Nov 2023",
+    title: "Astrophotography: Capturing the Cosmos",
+    description:
+      "Learn the art of capturing stunning photos of the night sky and celestial objects.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Baking",
+    author: "Luna Moon",
+    date: "23 Dec 2023",
+    title: "Festive Baking Extravaganza",
+    description:
+      "Get into the holiday spirit with festive baking recipes and creative ideas.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?New year",
+    author: "Isaac Turner",
+    date: "1 Jan 2024",
+    title: "New Year, New Goals",
+    description:
+      "Start the new year with inspiration and goal-setting strategies for a successful year ahead.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Romance travel",
+    author: "Aiden Harris",
+    date: "14 Feb 2024",
+    title: "Romantic Getaways: Travel Edition",
+    description:
+      "Explore romantic travel destinations and plan the perfect getaway with your loved one.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?barriers",
+    author: "Emma Parker",
+    date: "8 Mar 2024",
+    title: "Women in STEM: Breaking Barriers",
+    description:
+      "Celebrate the achievements of women in STEM and learn about their contributions to science and technology.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?underwater worlds",
+    author: "Owen Scott",
+    date: "20 Apr 2024",
+    title: "Exploring Underwater Worlds",
+    description:
+      "Dive into the wonders of the ocean and discover the beauty of underwater ecosystems.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?green living",
+    author: "Grace Turner",
+    date: "12 May 2024",
+    title: "Green Living: Sustainable Practices",
+    description:
+      "Explore sustainable living practices and how they contribute to a healthier planet.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?app",
+    author: "Leo Garcia",
+    date: "25 Jun 2024",
+    title: "Building Your Own App: A Beginner's Guide",
+    description:
+      "Learn the basics of app development and start building your own mobile applications.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?science experiments",
+    author: "Zoe Turner",
+    date: "10 Jul 2024",
+    title: "Mind-Blowing Science Experiments",
+    description:
+      "Unleash your inner scientist with fun and mind-blowing science experiments for all ages.",
+  },
+  {
+    image: "https://source.unsplash.com/featured/?Public speaking",
+    author: "Mason Smith",
+    date: "22 Aug 2024",
+    title: "Mastering the Art of Public Speaking",
+    description:
+      "Gain confidence and master the art of public speaking with proven techniques and tips.",
+  },
+];
 ---
 
 <Layout title="The blog.">
-	<main>
-		<h1 class="big-text">THE BLOG</h1>
+  <main>
+    <h1 class="big-text">THE BLOG</h1>
 
-		<RecentPosts />
-	</main>
+    <RecentPosts />
+
+    <div class="container">
+      <h2 class="container__header">All blog posts</h2>
+
+      <div class="container__posts">
+        {posts.map((post) => <Post post={post} client:visible />)}
+      </div>
+    </div>
+  </main>
 </Layout>
 
 <style lang="scss">
-	.big-text {
-		margin: 50px auto 30px;
-		text-align: center;
-		font-size: 18.2vw;
-		border-top: 1px solid #00000057;
-		border-bottom: 1px solid #00000057;
-	}
+  .big-text {
+    margin: 50px auto 30px;
+    text-align: center;
+    font-size: 18.2vw;
+    border-top: 1px solid #00000057;
+    border-bottom: 1px solid #00000057;
+  }
+
+  .container {
+    margin-top: 30px;
+
+    &__header {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 32px;
+      color: var(--main-text);
+    }
+
+    &__posts {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
+      gap: 32px;
+    }
+  }
 </style>
